@@ -7,7 +7,5 @@ class ApplicationController < ActionController::Base
   end
   check_authorization
 
-  def home
 
-  end
 end
