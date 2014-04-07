@@ -5,6 +5,7 @@ gem 'rails', '4.0.2'
 gem 'pry'
 gem 'pry-rails'
 
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -58,7 +59,7 @@ end
 gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
