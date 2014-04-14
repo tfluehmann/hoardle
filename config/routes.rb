@@ -2,12 +2,11 @@ Hoardle::Application.routes.draw do
   resources :categories
 
   resources :links
-
   get "home/index"
-  devise_for :users
-# The priority is based upon order of creation: first created -> highest priority.
-# See how all your routes lay out with "rake routes".
-  root :to => "home#index"
+  devise_for :users,  :controllers => { :registrations => "users" }
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+  root :to => "users#sign_in"
 # You can have the root of your site routed with "root"
 # root 'welcome#index'
 
