@@ -3,7 +3,7 @@ Hoardle::Application.routes.draw do
 
   resources :links
   get "home/index"
-  # devise_for :users,  controllers: { sessions: "users" }
+  devise_for :users,  controllers: { sessions: "users" }
   # devise_for :sessions, co.exintrollers: { sessions: "sessions" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
