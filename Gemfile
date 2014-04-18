@@ -45,6 +45,7 @@ end
 
 
 group :test, :development do
+  gem 'faker'
   gem 'factory_girl_rails'
   gem 'cucumber-rails', :require => false
   gem "capybara"
