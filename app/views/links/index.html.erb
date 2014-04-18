@@ -10,6 +10,8 @@
 	<div class="col-md-2 col-md-offset-5">
 		<%= label_tag "new_link", "New Link"%>
 		<%= text_field_tag "new_link", "", class: "form-control"%>
+		<%= label_tag "category", "Category"%>
+		<%= select_tag("category", options_for_select(Category.all), include_blank: true)%>
 	</div>
 </div>
 <table class="table table-bordered">
@@ -21,4 +23,9 @@
 		<th width="5%">delete</th>
 
 	</thead>
+	<tbody>
+		<% @links.all.each do |link|%>
+		<tr><td><%=link.link %></td><td><%=link.category.name%></td>><td><%=link_to "edit" %></td><td><%=link_to("delete")%></td></tr>
+		<%end%>
+	</tbody>
 </table>
