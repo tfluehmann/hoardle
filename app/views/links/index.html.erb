@@ -1,0 +1,24 @@
+<h1>Your Links</h1>
+
+<div id="explanation" class="col-md-12">
+	<blockquote>
+		Here you can find all your stored links and edit them if you want
+	</blockquote>
+</div>
+
+<div class="row">
+	<div class="col-md-2 col-md-offset-5">
+		<%= label_tag "new_link", "New Link"%>
+		<%= text_field_tag "new_link", "", class: "form-control"%>
+	</div>
+</div>
+<table class="table table-bordered">
+	<thead>
+		<th>Link</th>
+		<th>Category</th>
+
+		<th width="5%%">edit</th>
+		<th width="5%">delete</th>
+
+	</thead>
+</table>

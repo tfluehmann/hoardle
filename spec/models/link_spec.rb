@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Link do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it{should validate_presence_of(:link)}
+  it{should validate_presence_of(:category)}
 end
