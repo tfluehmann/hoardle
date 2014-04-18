@@ -1,4 +1,5 @@
 Hoardle::Application.routes.draw do
+  get "rest_api/create_link"
   resources :categories
 
   resources :links

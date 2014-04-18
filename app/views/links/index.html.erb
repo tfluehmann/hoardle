@@ -11,20 +11,18 @@
 		<%= label_tag "new_link", "New Link"%>
 		<%= text_field_tag "new_link", "", class: "form-control"%>
 		<%= label_tag "category", "Category"%>
-		<%= select_tag("category", options_for_select(Category.all), include_blank: true)%>
+		<%= select_tag("category", options_for_select(Category.all.pluck("name")), include_blank: true)%>
 	</div>
 </div>
 <table class="table table-bordered">
 	<thead>
 		<th>Link</th>
 		<th>Category</th>
-
 		<th width="5%%">edit</th>
 		<th width="5%">delete</th>
-
 	</thead>
 	<tbody>
-		<% @links.all.each do |link|%>
+		<% @links.each do |link|%>
 		<tr><td><%=link.link %></td><td><%=link.category.name%></td>><td><%=link_to "edit" %></td><td><%=link_to("delete")%></td></tr>
 		<%end%>
 	</tbody>
