@@ -7,7 +7,6 @@ gem 'pry-rails'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
-
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -39,21 +38,19 @@ gem 'rolify'
 
 group :doc do
 # bundle exec rake doc:rails generates the API under doc/api.
-  # gem 'sdoc', require: false
+# gem 'sdoc', require: false
   gem 'yard'
 end
 
-
 group :test, :development do
   gem 'faker'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'cucumber-rails', :require => false
   gem "capybara"
   gem 'rspec-rails'
   gem 'database_cleaner'
 end
-
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
