@@ -23,7 +23,7 @@
 	</thead>
 	<tbody>
 		<% @links.each do |link|%>
-		<tr><td><%=link.link %></td><td><%=link.categories.first %></td>><td><%=link_to "edit" %></td><td><%=link_to("delete")%></td></tr>
+		<tr><td><%=link.link %></td><td><%=link.categories.first.name %></td><td><%=link_to "edit" %></td><td><%=link_to("delete")%></td></tr>
 		<%end%>
 	</tbody>
 </table>
