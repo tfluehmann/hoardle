@@ -6,7 +6,7 @@ gem 'rails', '4.1.0'
 
 gem 'pry'
 gem 'pry-rails'
-
+gem "rails_best_practices"
 gem 'bootstrap-on-rails'
 gem 'font-awesome-less'
 gem 'pg'
