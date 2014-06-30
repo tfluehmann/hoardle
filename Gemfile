@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0'
+
+
 gem 'pry'
 gem 'pry-rails'
 
-gem 'bootstrap-sass', '~> 3.1.1'
-
+gem 'bootstrap-on-rails'
+gem 'font-awesome-less'
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -43,6 +45,12 @@ group :doc do
 end
 
 group :test, :development do
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
+  gem 'spring'
+  gem 'guard-cucumber'
+  gem 'spring-commands-cucumber'
+
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
@@ -58,6 +66,7 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'foreman'
 
 # Use Capistrano for deployment
 gem 'capistrano', group: :development
