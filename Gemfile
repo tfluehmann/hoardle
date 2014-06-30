@@ -68,6 +68,8 @@ end
 gem 'unicorn'
 gem 'foreman'
 
+gem 'simplecov', require: false, group: :test
+
 # Use Capistrano for deployment
 gem 'capistrano', group: :development
 

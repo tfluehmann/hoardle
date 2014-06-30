@@ -18,8 +18,11 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe LinksController do
-
+describe LinksController, type: :controller do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
   # This should return the minimal set of attributes required to create a valid
   # Link. As you add validations to Link, be sure to
   # adjust the attributes here as well.
@@ -34,7 +37,7 @@ describe LinksController do
     it "assigns all links as @links" do
       link = Link.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:links).should eq([link])
+      expect(assigns(:links)).to  eq([link])
     end
   end
 
@@ -42,14 +45,14 @@ describe LinksController do
     it "assigns the requested link as @link" do
       link = Link.create! valid_attributes
       get :show, {:id => link.to_param}, valid_session
-      assigns(:link).should eq(link)
+      expect(assigns(:link)).to  eq(link)
     end
   end
 
   describe "GET new" do
     it "assigns a new link as @link" do
       get :new, {}, valid_session
-      assigns(:link).should be_a_new(Link)
+      expect(assigns(:link)).to  be_a_new(Link)
     end
   end
 
@@ -57,7 +60,7 @@ describe LinksController do
     it "assigns the requested link as @link" do
       link = Link.create! valid_attributes
       get :edit, {:id => link.to_param}, valid_session
-      assigns(:link).should eq(link)
+      expect(assigns(:link)).to  eq(link)
     end
   end
 
@@ -71,29 +74,29 @@ describe LinksController do
 
       it "assigns a newly created link as @link" do
         post :create, {:link => valid_attributes}, valid_session
-        assigns(:link).should be_a(Link)
-        assigns(:link).should be_persisted
+        expect(assigns(:link)).to  be_a(Link)
+        expect(assigns(:link)).to  be_persisted
       end
 
       it "redirects to the created link" do
         post :create, {:link => valid_attributes}, valid_session
-        response.should redirect_to(Link.last)
+        expect(response).to  redirect_to(Link.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved link as @link" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Link.any_instance.stub(:save).and_return(false)
+      # Trigger the behavior that occurs when invalid params are submitted
+        expect_any_instance_of(Link).to receive(:save).and_return(false)
         post :create, {:link => { "link" => "invalid value" }}, valid_session
-        assigns(:link).should be_a_new(Link)
+        expect(assigns(:link)).to  be_a_new(Link)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Link.any_instance.stub(:save).and_return(false)
+      # Trigger the behavior that occurs when invalid params are submitted
+        expect_any_instance_of(Link).to receive(:save).and_return(false)
         post :create, {:link => { "link" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        expect(response).to  render_template("new")
       end
     end
   end
@@ -106,20 +109,20 @@ describe LinksController do
         # specifies that the Link created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Link.any_instance.should_receive(:update).with({ "link" => "MyText" })
+        expect_any_instance_of(Link).to receive(:update).with({ "link" => "MyText" })
         put :update, {:id => link.to_param, :link => { "link" => "MyText" }}, valid_session
       end
 
       it "assigns the requested link as @link" do
         link = Link.create! valid_attributes
         put :update, {:id => link.to_param, :link => valid_attributes}, valid_session
-        assigns(:link).should eq(link)
+        expect(assigns(:link)).to  eq(link)
       end
 
       it "redirects to the link" do
         link = Link.create! valid_attributes
         put :update, {:id => link.to_param, :link => valid_attributes}, valid_session
-        response.should redirect_to(link)
+        expect(response).to  redirect_to(link)
       end
     end
 
@@ -127,17 +130,17 @@ describe LinksController do
       it "assigns the link as @link" do
         link = Link.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Link.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Link).to receive(:save).and_return(false)
         put :update, {:id => link.to_param, :link => { "link" => "invalid value" }}, valid_session
-        assigns(:link).should eq(link)
+        expect(assigns(:link)).to  eq(link)
       end
 
       it "re-renders the 'edit' template" do
         link = Link.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Link.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Link).to receive(:save).and_return(false)
         put :update, {:id => link.to_param, :link => { "link" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        expect(response).to  render_template("edit")
       end
     end
   end
@@ -153,7 +156,7 @@ describe LinksController do
     it "redirects to the links list" do
       link = Link.create! valid_attributes
       delete :destroy, {:id => link.to_param}, valid_session
-      response.should redirect_to(links_url)
+      expect(response).to  redirect_to(links_url)
     end
   end
 

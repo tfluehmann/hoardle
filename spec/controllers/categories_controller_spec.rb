@@ -18,8 +18,11 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe CategoriesController do
-
+describe CategoriesController, type: :controller do
+before(:each) do
+  @user = FactoryGirl.create(:user)
+  sign_in @user
+end
   # This should return the minimal set of attributes required to create a valid
   # Category. As you add validations to Category, be sure to
   # adjust the attributes here as well.
@@ -34,7 +37,7 @@ describe CategoriesController do
     it "assigns all categories as @categories" do
       category = Category.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:categories).should eq([category])
+      expect(assigns(:categories)).to eq([category])
     end
   end
 
@@ -42,14 +45,14 @@ describe CategoriesController do
     it "assigns the requested category as @category" do
       category = Category.create! valid_attributes
       get :show, {:id => category.to_param}, valid_session
-      assigns(:category).should eq(category)
+      expect(assigns(:category)).to eq(category)
     end
   end
 
   describe "GET new" do
     it "assigns a new category as @category" do
       get :new, {}, valid_session
-      assigns(:category).should be_a_new(Category)
+      expect(assigns(:category)).to be_a_new(Category)
     end
   end
 
@@ -57,7 +60,7 @@ describe CategoriesController do
     it "assigns the requested category as @category" do
       category = Category.create! valid_attributes
       get :edit, {:id => category.to_param}, valid_session
-      assigns(:category).should eq(category)
+      expect(assigns(:category)).to eq(category)
     end
   end
 
@@ -71,29 +74,29 @@ describe CategoriesController do
 
       it "assigns a newly created category as @category" do
         post :create, {:category => valid_attributes}, valid_session
-        assigns(:category).should be_a(Category)
-        assigns(:category).should be_persisted
+        expect(assigns(:category)).to be_a(Category)
+        expect(assigns(:category)).to be_persisted
       end
 
       it "redirects to the created category" do
         post :create, {:category => valid_attributes}, valid_session
-        response.should redirect_to(Category.last)
+        expect(response).to redirect_to(Category.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved category as @category" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Category.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Category).to receive(:save).and_return(false)
         post :create, {:category => { "name" => "invalid value" }}, valid_session
-        assigns(:category).should be_a_new(Category)
+        expect(assigns(:category)).to be_a_new(Category)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Category.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Category).to receive(:save).and_return(false)
         post :create, {:category => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        expect(response).to render_template("new")
       end
     end
   end
@@ -106,20 +109,20 @@ describe CategoriesController do
         # specifies that the Category created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Category.any_instance.should_receive(:update).with({ "name" => "MyString" })
+        expect_any_instance_of(Category).to receive(:update).with({ "name" => "MyString" })
         put :update, {:id => category.to_param, :category => { "name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested category as @category" do
         category = Category.create! valid_attributes
         put :update, {:id => category.to_param, :category => valid_attributes}, valid_session
-        assigns(:category).should eq(category)
+        expect(assigns(:category)).to eq(category)
       end
 
       it "redirects to the category" do
         category = Category.create! valid_attributes
         put :update, {:id => category.to_param, :category => valid_attributes}, valid_session
-        response.should redirect_to(category)
+        expect(response).to redirect_to(category)
       end
     end
 
@@ -127,17 +130,17 @@ describe CategoriesController do
       it "assigns the category as @category" do
         category = Category.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Category.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Category).to receive(:save).and_return(false)
         put :update, {:id => category.to_param, :category => { "name" => "invalid value" }}, valid_session
-        assigns(:category).should eq(category)
+        expect(assigns(:category)).to eq(category)
       end
 
       it "re-renders the 'edit' template" do
         category = Category.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Category.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Category).to receive(:save).and_return(false)
         put :update, {:id => category.to_param, :category => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -153,7 +156,7 @@ describe CategoriesController do
     it "redirects to the categories list" do
       category = Category.create! valid_attributes
       delete :destroy, {:id => category.to_param}, valid_session
-      response.should redirect_to(categories_url)
+      expect(response).to redirect_to(categories_url)
     end
   end
 
