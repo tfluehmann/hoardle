@@ -1,42 +1,55 @@
-<div class="panel panel-default">
-	<div class="panel-body">
-		<div class="row">
-
-			<div class="col-md-4">
-				<img src="" alt="test" class="img-rounded">
-			</div>
-			<div class="col-md-6">
-				user
-
-			</div>
-			<div class="col-md-2">
-				<%= icon("lock")%>
-			</div>
-		</div>
-		<div class="row"></div>
+<div class="col-md-2">
+	<div class="list-group">
+		<%@categories.each do |category|%>
+		<a class="list-group-item" href="#"><%=icon("folder-o")%>&nbsp; <%= category.name%></a>
+		<%end%>
 	</div>
 </div>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
 
-<div class="col-md-12">
+				<div class="col-md-4">
+					<img src="" alt="test" class="img-rounded">
+				</div>
+				<div class="col-md-6">
+					user
+
+				</div>
+				<div class="col-md-2">
+					<%= icon("lock")%>
+				</div>
+			</div>
+			<div class="row"></div>
+		</div>
+	</div>
+
 	<% @links.each do |link|%>
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			<ul class="list-group">
 				<li class="list-group-item">
 					<%= link.link %>
 				</li>
 				<li class="list-group-item">
 					<%link.tags.each do |t|%>
-					<%= t.name %>,
+					<div style="display: inline-block">
+						<span class="badge"><%= t.name %></span>
+					</div>
 					<%end%>
 				</li>
 			</ul>
 
 		</div>
-		<div class="col-md-2">
-			<%= link_to("delete") do %>
-			<%= icon("times-circle fa-2x")%>
-			<%end%>
+		<div class="col-md-1">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<%= link_to("delete", confirm: "Are you sure?") do %>
+					<%= icon("times-circle fa-2x")%>
+					<%end%>
+				</div>
+			</div>
 		</div>
 	</div>
 	<%end%>

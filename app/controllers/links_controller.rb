@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   # GET /links.json
   def index
     @links = Link.all
+    @categories = Category.all
   end
 
   # GET /links/1
