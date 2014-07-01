@@ -1,29 +1,29 @@
-<h1>Your Links</h1>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
 
-<div id="explanation" class="col-md-12">
-	<blockquote>
-		Here you can find all your stored links and edit them if you want
-	</blockquote>
-</div>
+			<div class="col-md-4">
+				<img src="" alt="test" class="img-rounded">
+			</div>
+			<div class="col-md-6">
+				user
 
-<div class="row">
-	<div class="col-md-2 col-md-offset-5">
-		<%= label_tag "new_link", "New Link"%>
-		<%= text_field_tag "new_link", "", class: "form-control"%>
-		<%= label_tag "category", "Category"%>
-		<%= select_tag("category", options_for_select(Category.all.pluck("name")), include_blank: true)%>
+			</div>
+			<div class="col-md-2">
+				<%= icon("lock")%>
+			</div>
+		</div>
+		<div class="row"></div>
 	</div>
 </div>
-<table class="table table-bordered">
-	<thead>
-		<th>Link</th>
-		<th>Category</th>
-		<th width="5%%">edit</th>
-		<th width="5%">delete</th>
-	</thead>
-	<tbody>
-		<% @links.each do |link|%>
-		<tr><td><%=link.link %></td><td><%=link.categories.first.name %></td><td><%=link_to "edit" %></td><td><%=link_to("delete")%></td></tr>
+
+<div class="col-md-12">
+	<% @links.each do |link|%>
+	<div class="row">
+		<%= link.link %><%= link.categories.first.name %>
+		<%= link_to("delete") do %>
+		<%= icon("times-circle")%>
 		<%end%>
-	</tbody>
-</table>
+	</div>
+	<%end%>
+</div>
