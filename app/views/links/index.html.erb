@@ -20,10 +20,24 @@
 <div class="col-md-12">
 	<% @links.each do |link|%>
 	<div class="row">
-		<%= link.link %><%= link.categories.first.name %>
-		<%= link_to("delete") do %>
-		<%= icon("times-circle")%>
-		<%end%>
+		<div class="col-md-10">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<%= link.link %>
+				</li>
+				<li class="list-group-item">
+					<%link.tags.each do |t|%>
+					<%= t.name %>,
+					<%end%>
+				</li>
+			</ul>
+
+		</div>
+		<div class="col-md-2">
+			<%= link_to("delete") do %>
+			<%= icon("times-circle fa-2x")%>
+			<%end%>
+		</div>
 	</div>
 	<%end%>
 </div>
