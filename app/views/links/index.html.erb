@@ -1,7 +1,7 @@
 <div class="col-md-2">
 	<div class="list-group">
 		<%@categories.each do |category|%>
-		<a class="list-group-item" href="#"><%=icon("folder-o")%>&nbsp; <%= category.name%></a>
+		<a class="list-group-item" href="#"><%= icon("folder-o")%>&nbsp; <%= category.name%></a>
 		<%end%>
 	</div>
 </div>
@@ -23,6 +23,16 @@
 			</div>
 			<div class="row"></div>
 		</div>
+	</div>
+	<div class="row form-group">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<%= text_field_tag("link", "", class: "form-control", placeholder: "http://ficken.bumsen")%>
+			</li>
+			<li class="list-group-item">
+				<%= text_field_tag("tag", "", class: "form-control", placeholder: "ficken, bumsen, vögeln")%>
+			</li>
+		</ul>
 	</div>
 
 	<% @links.each do |link|%>
